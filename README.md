@@ -24,6 +24,5 @@ Then install the requirements in the virtual environment
 Then run the main flask file
 
 ~~~
-
  python server.py 
 ~~~
