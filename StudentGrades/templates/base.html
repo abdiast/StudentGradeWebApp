@@ -16,9 +16,10 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-
+    <link href="static/css/tables.css" rel="stylesheet"/> 
+    <link href="static/css/pagetabs.css" rel="stylesheet"/> 
     <title>{% block title %}Home{% endblock %}</title>
-
+    
     <link href="static/css/amongus.css" rel="stylesheet"/>
 </head> 
 
@@ -96,6 +97,11 @@
       type="text/javascript"
       src="{{ url_for('static', filename='index.js') }}"
     ></script>  
+
+    <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='/js/pagetabs.js') }}"
+  ></script>  
 
 
 </html>

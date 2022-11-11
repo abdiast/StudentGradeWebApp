@@ -1,6 +1,7 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
-<h1 align="center">Notes</h1>
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+
+{% block content%}
+<!-- <h1 align="center">Notes</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
   <li class="list-group-item">
@@ -17,5 +18,133 @@
   <div align="center">
     <button type="submit" class="btn btn-primary">Add Note</button>
   </div>
-</form>
+</form> -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Your Courses')" id="defaultOpen">Your Courses</button>
+  <button class="tablinks" onclick="openCity(event, 'Add Courses')">Add Courses</button>
+</div>
+
+<div id="Your Courses" class="tabcontent">
+
+  <table class="content-table" >
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Teacher</th>
+            <th>Time</th>
+            <th>Students Enrolled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Physics 121</td>
+            <td>Susan Walker</td>
+            <td>TR 11:00-11:50 AM</td>
+            <td>5/10</td>
+          </tr>
+          <tr class="active-row">
+            <td>CS 106</td>
+            <td>Ammon Hepworth</td>
+            <td>MWF 2:00-2:50 PM</td>
+            <td>4/10</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+          </tr>
+          <tr class="active-row">
+            <td>4</td>
+            <td>Jack</td>
+            <td>52</td>
+            <td>43</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div id="Add Courses" class="tabcontent">
+  
+  <table class="content-table" >
+    <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Teacher</th>
+        <th>Time</th>
+        <th>Students Enrolled</th>
+        <th>Add Class</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Physics 121</td>
+        <td>Susan Walker</td>
+        <td>TR 11:00-11:50 AM</td>
+        <td>5/10</td>
+        <td>
+          <input
+          id="curtainInput" 
+          type="button" 
+          value="ADD Course" />
+
+        </td>
+      </tr>
+      <tr class="active-row">
+        <td>CS 106</td>
+        <td>Ammon Hepworth</td>
+        <td>MWF 2:00-2:50 PM</td>
+        <td>5/10</td>
+        <td>
+          <input 
+          id="curtainInput" 
+          type="button" 
+          value="ADD Course" />
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Nick</td>
+        <td>52,300</td>
+        <td>dcode</td>
+        <td>
+          <input
+          id="curtainInput" 
+          type="button" 
+          value="ADD Course" />
+
+        </td>
+      </tr>
+      <tr class="active-row">
+        <td>4</td>
+        <td>Jack</td>
+        <td>52</td>
+        <td>43</td>
+        <td>
+          <input 
+          id="curtainInput" 
+          type="button" 
+          value="ADD Course" />
+
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
 {% endblock %}
