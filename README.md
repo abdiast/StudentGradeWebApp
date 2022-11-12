@@ -13,6 +13,7 @@ Then activate the virtual environment
 
 ~~~
  venv/Scripts/Activate 
+ source venv/bin/activate #mac
 ~~~
 
 Then install the requirements in the virtual environment 
