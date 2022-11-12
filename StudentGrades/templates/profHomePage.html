@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+
+{% block content%}
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Your Courses')" id="defaultOpen">Your Courses</button>
+    <button class="tablinks" onclick="openCity(event, 'TESTFORMAIN')" id="defaultOpen">TESTFORMAIN</button>
+</div>
+  
+<div id="Your Courses" class="tabcontent">
+    <div class="no-print">
+      <input type="text" name="name" id="name" value={{user.username}} /><br/><br/>
+    </div>
+    Course Name: <input type="text" name="currentAge" id="currentAge" /><br/><br/>
+    Time: <input type="date" name="Birthday" id="Birthday" /><br/>
+
+    <button onclick="addRow();">Display</button><br/><br/>
+
+    <!-- <select id="carType">
+    <option value="ferrari"  id="ferrari">Ferrari</option>
+    <option value="lamborghini"  id="lamborghini">Lamborghini</option>
+    <option value="porsche"  id="porsche">Porsche</option>
+    <option value="bugatti"  id="bugatti">Bugatti</option>
+    <option value="pagani" id="pagani">Pagani</option>
+
+    </select> -->
+
+
+    <table border="1" class="content-table" id="table">
+      <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Teacher</th>
+          <th>Time</th>
+          <th>Students Enrolled</th>
+          <th>del</th>
+        </tr>
+     </thead>
+   
+           <tbody>
+            <tr>
+                <td>
+                    <a href="#"> 
+                        CS 162
+                </td>
+                <td>Ammon Hepworth</td>
+                <td>TR 3:00-3:50 PM</td>
+                <td>4/4</td>
+            </tr>
+            <tr class="active-row">
+                <td>
+                    <a href="/profhome/cse162"> 
+                        CS 106
+                </td>
+              <td>Ammon Hepworth</td>
+              <td>MWF 2:00-2:50 PM</td>
+              <td>4/10</td>
+            </tr>
+
+          </tbody>  
+      </table>
+    
+</div>  
+<div id="TESTFORMAIN" class="tabcontent">
+
+    
+</div>
+
+
+
+{% endblock %}

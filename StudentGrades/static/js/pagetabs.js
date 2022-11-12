@@ -15,14 +15,16 @@ function openCity(evt, cityName) {
   document.getElementById("defaultOpen").click();
 
  
-  document.getElementById("curtainInput").addEventListener(
-    "click",
+
+
+
+  document.getElementsByClassName("AddCors").addEventListener("click",
     function(event) {
       if (event.target.value === "ADD Course") {
         event.target.value = "DROP Course";
-      } else {
+      } else if (event.target.value === "DROP Course"){
         event.target.value = "ADD Course";
       }
-    },
-    false
+    }
+    , false
   );

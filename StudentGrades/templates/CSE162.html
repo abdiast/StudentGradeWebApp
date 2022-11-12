@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}CSE162{% endblock %} 
+
+{% block content%}
+
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'CSE162')" id="defaultOpen">CSE162</button>
+
+  </div>
+
+
+  <div id="CSE162" class="tabcontent">
+  
+    <table class="content-table" >
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Teacher</th>
+              <th>Time</th>
+              <th>Students Enrolled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>
+                    <a href="#"> 
+                        CS 162
+                </td>
+                <td>Ammon Hepworth</td>
+                <td>TR 3:00-3:50 PM</td>
+                <td>4/4</td>
+            </tr>
+            <tr class="active-row">
+                <td>
+                    <a href="/kms"> 
+                        CS 106
+                </td>
+              <td>Ammon Hepworth</td>
+              <td>MWF 2:00-2:50 PM</td>
+              <td>4/10</td>
+            </tr>
+
+          </tbody>
+        </table>
+  </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

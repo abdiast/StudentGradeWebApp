@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import Users
+from .models import Users, Role, Teachers, Students, roles_users
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+from sqlalchemy import desc
+from more_itertools import flatten
 
 auth = Blueprint('auth', __name__)
 
@@ -19,7 +20,15 @@ def login():
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+
+                teacherID = list(flatten(Teachers.query.with_entities(Teachers.User_id).order_by(desc(Teachers.id)).all()))
+                studentID = list(flatten(Students.query.with_entities(Students.User_id).order_by(desc(Students.id)).all()))
+
+                if (user.id in studentID):
+                    return redirect(url_for('views.home'))
+                elif (user.id in teacherID):
+                    return redirect(url_for('views.profhome'))
+
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -42,6 +51,7 @@ def sign_up():
         username = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        studentOrProf = request.form.get('theirRole')
 
         user = Users.query.filter_by(email=email).first()
         if user:
@@ -56,11 +66,28 @@ def sign_up():
             flash('Password must be at least 7 characters.', category='error')
         else:
             new_user = Users(email=email, username=username, password=generate_password_hash(
-            password1, method='sha256'))
+            password1, method='sha256') )
+
+            lastRow = Users.query.order_by(Users.id.desc()).first()
+            soonTobeID = lastRow.id + 1
+
             db.session.add(new_user)
+
+            if (studentOrProf == 'Professor'):
+                db.session.add(Teachers(Name = username, User_id =  soonTobeID))
+            elif (studentOrProf == 'Student'):
+                db.session.add(Students(Name = username, User_id =  soonTobeID))
+
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            return redirect(url_for('views.home'))
+
+            if (studentOrProf == 'Professor'):
+                return redirect(url_for('views.profhome'))
+
+            elif (studentOrProf == 'Student'):
+                return redirect(url_for('views.home'))
+
 
     return render_template("sign_up.html", user=current_user)
+

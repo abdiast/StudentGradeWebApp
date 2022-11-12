@@ -41,6 +41,7 @@ def appnamey(Daname):
 	admin.add_view(Administrator(Enrollment, db.session)) 
 
 
+
 def superuserNewDB(Daname):
 	with Daname.app_context():
 		user_role = Role(name='user')

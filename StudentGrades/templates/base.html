@@ -18,9 +18,17 @@
     />
     <link href="static/css/tables.css" rel="stylesheet"/> 
     <link href="static/css/pagetabs.css" rel="stylesheet"/> 
+    <link href="static/css/amongus.css" rel="stylesheet"/>
+
+    <link href="static/css/dropdown.css" rel="stylesheet"/>
+
+    <link href="static/css/proffAd.css" rel="stylesheet"/>
+    
     <title>{% block title %}Home{% endblock %}</title>
     
-    <link href="static/css/amongus.css" rel="stylesheet"/>
+    
+
+
 </head> 
 
 
@@ -102,6 +110,16 @@
     type="text/javascript"
     src="{{ url_for('static', filename='/js/pagetabs.js') }}"
   ></script>  
+
+  <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='/js/dropdown.js') }}"
+  ></script> 
+
+  <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='/js/profAddCourse.js') }}"
+  ></script> 
 
 
 </html>

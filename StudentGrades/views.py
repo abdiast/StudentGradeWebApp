@@ -35,3 +35,16 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
+@views.route('/home', methods=['GET', 'POST'])
+@login_required
+def profhome():
+    return render_template("profHomePage.html", user=current_user)
+
+@views.route('/home/cse162')
+def CSE162():
+    return render_template("CSE162.html", user=current_user)
+
+@views.route('/home/cse106')
+def CSE106():
+    return render_template("CSE106.html", user=current_user)

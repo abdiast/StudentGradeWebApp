@@ -1,0 +1,16 @@
+table,
+th {
+  border: 1px solid black;
+}
+
+tbody td {
+  padding: 30px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #F4BC01;
+  color: #ABC412;
+}
+
+
+.no-print { display: none; }
