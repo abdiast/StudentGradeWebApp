@@ -48,12 +48,15 @@ class Teachers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(150))
     User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
+    user = db.relationship('Users', backref='teachers', uselist=False)
 
 class Students(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(150))
     User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('Users', backref='students', uselist=False)
+    classes = db.relationship('Enrollment', back_populates='students')
 
 class Classes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -63,10 +66,15 @@ class Classes(db.Model):
     capacity = db.Column(db.Integer)
     time = db.Column(db.String(50))
 
+    teacher = db.relationship('Teachers', backref=db.backref('teachers', lazy=True))
+    students = db.relationship('Enrollment', back_populates='classes')
+
 class Enrollment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     class_id = db.Column(db.Integer, db.ForeignKey('classes.id'))
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'), unique=True)
     grade = db.Column(db.String(50))
     #UniqueConstraint(class_id, student_id)
+    students = db.relationship('Students', back_populates='classes')
+    classes = db.relationship('Classes', back_populates='students')
 

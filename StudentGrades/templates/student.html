@@ -11,9 +11,20 @@
 {% block person_name %}{{ student_name }}{% endblock %}
 
 {% block inner_nav_links %}
+<div class="tab">
+    <!--<button class="tablinks" onclick="openCity(event, 'Your Courses')" id="defaultOpen">Your Courses</button>-->
+    <button class="tablinks" onclick="getTable('enrolled', '{{ student_name }}')" >Enrolled Courses</button>
+    <!--<button class="tablinks" onclick="openCity(event, 'Add Courses')">Add Courses</button> -->
+    <button class="tablinks" onclick="getTable('add', '{{ student_name }}')">Add Courses</button> 
+  </div>
+  <div id="Your Courses" class="tabcontent" >
     <button class="inner-nav-link enrolled-tab" onclick="getTable('enrolled', '{{ student_name }}')">Enrolled Courses</button>
+  </div>
    
-    <button class="inner-nav-link add-tab" onclick="getTable('add', '{{ student_name }}')">Add Courses</button>
+<div id="Add Courses" class="tabcontent" onclick="getTable('add', '{{ student_name }}')">
+    <button class="inner-nav-link add-tab" onclick="getTable('add', '{{ student_name }}')">Add Courses</button> 
+</div>
+   
 {% endblock %}
 
 {% block additional_scripts %}

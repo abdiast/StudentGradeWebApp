@@ -1,7 +1,9 @@
 /* ---- reset ---- */
 body {
-  margin: 0;
-  font: normal 75% Arial, Helvetica, sans-serif;
+  margin: 5;
+  font: normal 100% sans-serif;
+  font-size: 20px;
+  color: rgb(255, 0, 0);
 }
 canvas {
   display: block;

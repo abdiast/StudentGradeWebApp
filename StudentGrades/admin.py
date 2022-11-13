@@ -1,5 +1,5 @@
 from flask import Flask 
-from flask_admin import Admin, AdminIndexView
+from flask_admin import Admin, AdminIndexView, expose
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user, UserMixin
@@ -25,7 +25,7 @@ class Administrator(ModelView):
 	column_list = []
 
 
-listOfModels = [Role, Users, Teachers,Classes, Students, Enrollment]
+listOfModels = [Role, Users, Students, Teachers,Classes, Enrollment]
 
 AllColList = []
 for i in range(len(listOfModels)):
@@ -44,7 +44,7 @@ for i in range(len(listOfModels)):
 # class BView(ModelView):
 #     column_list('b1','b2')
 
-
+    
 
 
 
@@ -56,9 +56,13 @@ class MyAdminView(AdminIndexView):
 				current_user.is_authenticated and
 				current_user.has_roles('superuser')
 		)
-
+	@expose('/')
+	def index(self):
+		arg1 = 'Hello'
+		return self.render('adminhome.html', arg1=arg1)
 	# def inaccessible_callback(self, name, **kwargs):
 	#     return redirect(url_for('auth.login'))
+
 
 user_datastore = SQLAlchemyUserDatastore(db, Users, Role)
 

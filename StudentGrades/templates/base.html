@@ -21,13 +21,13 @@
 
       <link rel="stylesheet" href="{{ url_for('static', filename = '/css/pagetabs.css') }}">
       
-      <link rel="stylesheet" href="{{ url_for('static', filename = '/css/amongus.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename = '/css/amongus.css') }}"> 
 
       <link rel="stylesheet" href="{{ url_for('static', filename = '/css/tables.css') }}">
 
       <link rel="stylesheet" href="{{ url_for('static', filename = '/css/dropdown.css') }}">
 
-
+      <!--<link rel="stylesheet" href="{{ url_for('static', filename = '/css/interactiveDivs.css') }}">-->
 
     {% endblock %}
     
@@ -41,7 +41,8 @@
 <body>
 
 <!-- tsParticles container -->
-<div id="tsparticles"> </div>
+<div id="tsparticles"></div>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button
@@ -114,11 +115,6 @@
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.34.1/tsparticles.min.js"
         integrity="sha256-D6LXCdCl4meErhc25yXnxIFUtwR96gPo+GtLYv89VZo=" crossorigin="anonymous"></script>
 
-  <!-- <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='/js/amongusparticles.js') }}"
-    ></script>  -->
-
  <script
       type="text/javascript"
       src="{{ url_for('static', filename='index.js') }}"
@@ -144,10 +140,15 @@
     src="{{ url_for('static', filename='/js/finessed.js') }}"
   ></script> 
 
-   <script
+  <script
     type="text/javascript"
     src="{{ url_for('static', filename='/js/amongusparticles.js') }}"
-  ></script>  
+  ></script> 
+
+   <!--<script
+    type="text/javascript"
+    src="{{ url_for('static', filename='/js/interactiveDivs.js') }}"
+  ></script> -->
 
 </body>
 </html>

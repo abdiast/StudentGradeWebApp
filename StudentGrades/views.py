@@ -49,8 +49,10 @@ def instructor(name):
         
     tea_data = []
     teaQ = Teachers.query.filter_by(Name=name).first()
-    print(current_user.id)
-    print(teaQ.User_id)
+    # print(current_user.id)
+    # print(teaQ.User_id)
+    if not teaQ:
+        abort(404)
     if current_user.id != teaQ.User_id:
         abort(403)
     
@@ -80,16 +82,16 @@ def specific_course(name, course, student = None):
     teaQD = Enrollment.query.filter_by(class_id = teaQC.id).all()
     print(teaQC)
     print(teaQD)
-
+    print(teaQC.numberEnrolled)
     if request.method == 'GET':
         # Displays grades for a specific course
         
         for j in range(teaQC.numberEnrolled):
-            studentSpecClass = Students.query.filter_by(id = teaQD[j].student_id).first()
+            studentSpecClass = Students.query.filter_by(id = teaQD[j-1].student_id).first()
             print(studentSpecClass)
             temp1 = {
                 'name':studentSpecClass.Name,
-                'grade':teaQD[j].grade
+                'grade':teaQD[j-1].grade
             }
             tea_course_data.append(temp1)
 
@@ -101,10 +103,10 @@ def specific_course(name, course, student = None):
         db.session.commit()
 
         for j in range(teaQC.numberEnrolled):
-            studentSpecClass = Students.query.filter_by(id = teaQD[j].student_id).first()
+            studentSpecClass = Students.query.filter_by(id = teaQD[j-1].student_id).first()
             temp1 = {
                 'name':studentSpecClass.Name,
-                'grade':teaQD[j].grade
+                'grade':teaQD[j-1].grade
             }
             tea_course_data.append(temp1)
     
@@ -113,7 +115,7 @@ def specific_course(name, course, student = None):
 
 
 @views.route("home/student/<name>", methods = ['POST', 'GET'])
-#@login_required
+@login_required
 def student(name):
     student_name = name
 

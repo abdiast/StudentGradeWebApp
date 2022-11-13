@@ -5,13 +5,17 @@
 {% block styles %}
     {{ super() }}
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'instructor.css') }}"> -->
 {% endblock %}
 
 {% block person_name %}{{ instructor_name }}{% endblock %}
 
 {% block inner_nav_links %}
-    <button class="inner-nav-link active-tab">Your Courses</button>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Your Courses')" id="defaultOpen">Your Courses</button>
+        
+      </div>
+
 {% endblock %}
 
 {% block data_table_headings %}
