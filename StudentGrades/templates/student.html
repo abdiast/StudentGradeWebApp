@@ -1,0 +1,24 @@
+{% extends "person.html" %}
+
+{% block title %}Student{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+
+    
+{% endblock %}
+
+{% block person_name %}{{ student_name }}{% endblock %}
+
+{% block inner_nav_links %}
+    <button class="inner-nav-link enrolled-tab" onclick="getTable('enrolled', '{{ student_name }}')">Enrolled Courses</button>
+   
+    <button class="inner-nav-link add-tab" onclick="getTable('add', '{{ student_name }}')">Add Courses</button>
+{% endblock %}
+
+{% block additional_scripts %}
+    <script>
+        window.onload = getTable('enrolled', '{{ student_name }}');
+    </script>
+{% endblock %}
+

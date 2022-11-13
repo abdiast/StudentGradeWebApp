@@ -2,15 +2,18 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from flask_cors import CORS
 
 db = SQLAlchemy()
 DB_NAME = "StudentEnrollment.sqlite"
 
+app = Flask(__name__)
+
 def create_app():
-    app = Flask(__name__)
+    #app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+    app.config['FLASK_ADMIN_SWATCH'] = 'United'
 
     db.init_app(app)
 
@@ -26,7 +29,9 @@ def create_app():
     
     create_database(app)
 
-    
+    # from .newCourseReceiver import pytojs
+    # pytojs(app)
+    CORS(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -47,3 +52,6 @@ def create_database(app):
             superuserNewDB(app)
     
         print('Created Database!')
+
+def needAPP():
+    return app

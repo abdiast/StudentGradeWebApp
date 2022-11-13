@@ -1,9 +1,14 @@
+
+
+
+
 function addRow() {
     // get input values
     var Coursename = document.getElementById('currentAge').value;
     var TeachName = document.getElementById('name').value;
     var Birthday = document.getElementById('Birthday').value;
-    var carType = "0/10";//document.getElementById('carType').value;
+    var carType = "0/10";
+    //document.getElementById('carType').value;
   
     var table = document.getElementsByTagName('table')[0];
     const index = table.rows.length;
@@ -45,3 +50,40 @@ function addRow() {
     document.getElementById("table").deleteRow(deleteIndex);
   }
 
+
+  function grabAllRows()
+  {
+
+    const spawner = require('child_ process').spawn;
+
+  const data_to_pass_in = {
+    data_sent : 'Send th1s to python script.',
+    data_returned: undefined
+  }
+  console.log('Data sent to python script:', data_to_pass_in);
+  const python_process = spawner('python', ['./newCourseReceiver.py', JSON.stringify(data_to_pass_in)]);
+  python_process.stdout.on('data', (data) => 
+  {
+    console.log("Data received Trom python script:", JSON.parse(data.tostring()))
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+//     Coursename
+//     TeachName
+// Birthday 
+// carType 
+
+
+
+  }

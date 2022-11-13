@@ -3,6 +3,7 @@
     font-family: sans-serif;
 }
 /* border:1px solid black;margin-left:auto;margin-right:auto; */
+table,
 .content-table {
     border-collapse: collapse;
     margin: 25px 0;
@@ -15,35 +16,45 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.content-table thead tr {
+tr {
     background-color: #006aff;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
 }
 
-.content-table th,
-.content-table td {
+th,
+td {
     padding: 12px 15px;
 }
 
-.content-table tbody tr {
+tr {
     border-bottom: 1px solid #dddddd;
 }
 
-.content-table tbody tr:nth-of-type(even) {
+tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+    color: #006aff;
 }
 
-.content-table tbody tr:nth-of-type(odd) {
-    background-color: #f3f3f3;
+tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+    color:#00ff26
 }
 
-.content-table tbody tr:last-of-type {
+tbody tr:last-of-type {
     border-bottom: 2px solid #006aff;
 }
 
-.content-table tbody tr.active-row {
+ tr.active-row:nth-of-type(even) {
     font-weight: bold;
     color: #006aff;
 }
+
+tr.active-row:nth-of-type(odd) {
+    font-weight: bold;
+    color: #00ff26;
+}
+
+
+.no-print { display: none; }

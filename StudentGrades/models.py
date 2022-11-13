@@ -5,6 +5,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_security import Security, SQLAlchemyUserDatastore, \
     RoleMixin, login_required, current_user
+from sqlalchemy import UniqueConstraint
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -65,6 +66,7 @@ class Classes(db.Model):
 class Enrollment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     class_id = db.Column(db.Integer, db.ForeignKey('classes.id'))
-    student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), unique=True)
     grade = db.Column(db.String(50))
+    #UniqueConstraint(class_id, student_id)
 

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+    
+    {% block styles %}
+    {{ super() }}
+
+
+    {% endblock %}
+
+{% block content %}
+    <div class="person-container">
+        <div class="person-container-top">
+            <h1 class="greeting">Welcome {% block person_name %}{% endblock %}</h1>
+            <!-- <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search" autocomplete="off">
+            </div> 
+            <div>
+                <a href="{{ url_for('auth.logout') }}">Sign out</a>
+            </div>-->
+        </div>
+        <div class="person-container-middle">
+            <div class="inner-nav-container">
+                {% block inner_nav_links%}{% endblock %}
+            </div>
+        </div>
+        <div class="person-container-bottom">
+            <table class="data-table">
+                <thead class="data-table-head">
+                    <tr class="data-table-row headings-row">
+                        {% block data_table_headings %}{% endblock %}
+                    </tr>
+                </thead>
+                <tbody class="data-table-body">
+                    {% block data_table_body %}{% endblock %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+

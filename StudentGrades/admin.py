@@ -8,8 +8,10 @@ from flask_security import Security, SQLAlchemyUserDatastore, \
 from . import db
 import json
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.model import BaseModelView
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash
+from sqlalchemy import inspect
 
 from .models import *
 
@@ -17,6 +19,35 @@ class Administrator(ModelView):
 	@login_required
 	def is_accessible(self):
 		return super().is_accessible()
+
+	column_display_pk = True
+	column_hide_backrefs = False
+	column_list = []
+
+
+listOfModels = [Role, Users, Teachers,Classes, Students, Enrollment]
+
+AllColList = []
+for i in range(len(listOfModels)):
+	AllColList.append([c_attr.key for c_attr in inspect(listOfModels[i]).mapper.column_attrs])
+
+
+# print(AllColList)
+# class AView(ModelView):
+# 	column_display_pk = True 
+# 	column_hide_backrefs = False
+# 	#property, all columns except primary key will be shown
+# 	column_list = [c_attr.key for c_attr in inspect(Students).mapper.column_attrs]
+# 	print(column_list)
+
+
+# class BView(ModelView):
+#     column_list('b1','b2')
+
+
+
+
+
 
 class MyAdminView(AdminIndexView):
 	def is_accessible(self):
@@ -32,14 +63,21 @@ class MyAdminView(AdminIndexView):
 user_datastore = SQLAlchemyUserDatastore(db, Users, Role)
 
 def appnamey(Daname):
-	admin = Admin(Daname, name='Admin', template_mode='bootstrap4', index_view=MyAdminView()) 
-	admin.add_view(Administrator(Role, db.session)) 
-	admin.add_view(Administrator(Users, db.session)) 
-	admin.add_view(Administrator(Teachers, db.session)) 
-	admin.add_view(Administrator(Students, db.session)) 
-	admin.add_view(Administrator(Classes, db.session)) 
-	admin.add_view(Administrator(Enrollment, db.session)) 
+	admin = Admin(Daname, name='Admin', template_mode='bootstrap3', index_view=MyAdminView()) 
+	for j in range(len(AllColList)):
+		daSesh = db.session
+		tempAdmin = Administrator(listOfModels[j], daSesh)
 
+		tempAdmin.column_list = AllColList[j]
+
+		admin.add_view(tempAdmin)
+
+
+	# admin.add_view(Administrator(Users, db.session)) 
+	# admin.add_view(Administrator(Teachers, db.session)) 
+	# admin.add_view(Administrator(Students, db.session)) 
+	# admin.add_view(Administrator(Classes, db.session)) 
+	# admin.add_view(AView(Students, db.session))
 
 
 def superuserNewDB(Daname):

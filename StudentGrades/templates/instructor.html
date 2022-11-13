@@ -1,0 +1,37 @@
+{% extends "person.html" %} 
+
+{% block title %}Instructor{% endblock %} 
+
+{% block styles %}
+    {{ super() }}
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'instructor.css') }}"> -->
+{% endblock %}
+
+{% block person_name %}{{ instructor_name }}{% endblock %}
+
+{% block inner_nav_links %}
+    <button class="inner-nav-link active-tab">Your Courses</button>
+{% endblock %}
+
+{% block data_table_headings %}
+    <th>Course Name</th>
+    <th>Teacher</th>
+    <th>Time</th>
+    <th>Students Enrolled</th>
+{% endblock %}
+
+{% block data_table_body %}
+    {% for class in data %}
+        <tr>
+            <td>
+                <a href="{{ url_for('views.specific_course', name = class.Teacher, course = class.CourseName) }}">
+                    {{ class.CourseName }}
+                </a>
+            </td>
+            <td>{{ class.Teacher }}</td>
+            <td>{{ class.Time }}</td>
+            <td>{{ class.StudentsEnrolled }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

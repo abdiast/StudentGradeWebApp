@@ -18,7 +18,18 @@ function openCity(evt, cityName) {
 
 
 
-  document.getElementsByClassName("AddCors").addEventListener("click",
+  // document.getElementsByClassName("AddCors").addEventListener("click",
+  //   function(event) {
+  //     if (event.target.value === "ADD Course") {
+  //       event.target.value = "DROP Course";
+  //     } else if (event.target.value === "DROP Course"){
+  //       event.target.value = "ADD Course";
+  //     }
+  //   }
+  //   , false
+  // );
+
+    document.getElementById("curtainInput1").addEventListener("click",
     function(event) {
       if (event.target.value === "ADD Course") {
         event.target.value = "DROP Course";
